@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dewmini Tharindi | Supply Chain Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#07100d;--surface:#0d1a14;--card:#111f18;--border:#182e22;--border2:#1f3d2c;
+  --green:#00d47e;--green2:#00a360;--green3:rgba(0,212,126,0.09);
+  --text:#dff0e8;--muted:#527a63;--soft:#9dc4ae;--heading:#e8f5ed;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-weight:300;line-height:1.75;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,180,100,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,180,100,0.025) 1px,transparent 1px);background-size:52px 52px;pointer-events:none;z-index:0;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:0.9rem 6%;backdrop-filter:blur(20px);background:rgba(7,16,13,0.92);border-bottom:1px solid var(--border);}
+.logo{font-family:'Playfair Display',serif;font-size:1rem;color:var(--green);letter-spacing:0.04em;}
+.nav-links{display:flex;gap:1.8rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.72rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover{color:var(--green);}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;padding:0 6%;position:relative;overflow:hidden;}
+.hero-glow{position:absolute;top:20%;right:0;width:700px;height:700px;background:radial-gradient(ellipse,rgba(0,212,126,0.055) 0%,transparent 65%);pointer-events:none;}
+.hero-inner{position:relative;z-index:1;max-width:820px;}
+.hero-eyebrow{font-size:0.7rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--green);margin-bottom:1.1rem;display:flex;align-items:center;gap:0.8rem;opacity:0;animation:up 0.6s 0.1s forwards;}
+.hero-eyebrow::before{content:'';width:26px;height:1px;background:var(--green);}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,6.5vw,5.2rem);font-weight:700;line-height:1.07;color:var(--heading);opacity:0;animation:up 0.6s 0.25s forwards;}
+.hero h1 em{font-style:italic;color:var(--green);}
+.hero-meta{margin-top:1.3rem;font-size:0.88rem;color:var(--soft);opacity:0;animation:up 0.6s 0.4s forwards;}
+.hero-meta span{color:var(--muted);margin:0 0.5rem;}
+.hero-desc{margin-top:1rem;font-size:0.92rem;color:var(--soft);max-width:560px;opacity:0;animation:up 0.6s 0.52s forwards;}
+.hero-btn{margin-top:2rem;opacity:0;animation:up 0.6s 0.65s forwards;}
+.hero-btn a{display:inline-flex;align-items:center;gap:0.5rem;background:var(--green);color:#051a0e;font-size:0.78rem;font-weight:500;letter-spacing:0.08em;padding:0.72rem 1.7rem;border-radius:100px;text-decoration:none;transition:background 0.2s,transform 0.2s;}
+.hero-btn a:hover{background:#00f090;transform:translateY(-2px);}
+.hero-btn a::after{content:'↓';}
+
+/* ── OVERVIEW ── */
+.overview{padding:5rem 6% 2rem;position:relative;z-index:1;}
+.overview-head{margin-bottom:2.5rem;}
+.sec-label{font-size:0.68rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--green);margin-bottom:0.5rem;}
+.overview-head h2{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:600;color:var(--heading);}
+.overview-head p{color:var(--soft);font-size:0.88rem;margin-top:0.4rem;max-width:580px;}
+.cards-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;}
+.ov-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.6rem 1.8rem;transition:border-color 0.25s,transform 0.25s;cursor:default;}
+.ov-card:hover{border-color:var(--border2);transform:translateY(-3px);}
+.ov-num{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:700;color:rgba(0,212,126,0.13);line-height:1;margin-bottom:0.7rem;}
+.ov-status{display:inline-block;background:rgba(0,212,126,0.1);border:1px solid rgba(0,212,126,0.22);color:var(--green);font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:0.18rem 0.6rem;border-radius:100px;margin-bottom:0.6rem;}
+.ov-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;color:var(--heading);margin-bottom:0.5rem;line-height:1.3;}
+.ov-tags{display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.7rem;}
+.ov-tag{font-size:0.66rem;color:var(--muted);border:1px solid var(--border2);padding:0.15rem 0.5rem;border-radius:6px;}
+
+/* ── PROJECT SECTION ── */
+.proj-section{padding:4rem 6%;position:relative;z-index:1;}
+.proj-header-block{display:flex;align-items:flex-start;gap:1.5rem;margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--border);}
+.proj-big-num{font-family:'Playfair Display',serif;font-size:5rem;font-weight:700;color:rgba(0,212,126,0.1);line-height:1;flex-shrink:0;}
+.proj-header-text{}
+.proj-type{font-size:0.68rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--green);margin-bottom:0.4rem;}
+.proj-header-text h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.1rem);font-weight:700;color:var(--heading);line-height:1.2;}
+.proj-tool-row{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.8rem;}
+.tool-pill{background:var(--green3);border:1px solid rgba(0,212,126,0.18);color:var(--green);font-size:0.67rem;font-weight:500;letter-spacing:0.05em;padding:0.2rem 0.65rem;border-radius:100px;}
+
+/* STEP BLOCKS */
+.step-block{margin-bottom:2.5rem;}
+.step-num-label{display:flex;align-items:center;gap:0.8rem;margin-bottom:0.9rem;}
+.step-circle{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.68rem;font-weight:500;flex-shrink:0;}
+.s1 .step-circle{background:rgba(0,212,126,0.12);color:var(--green);border:1px solid rgba(0,212,126,0.3);}
+.s2 .step-circle{background:rgba(0,163,204,0.12);color:#00a3cc;border:1px solid rgba(0,163,204,0.3);}
+.s3 .step-circle{background:rgba(139,124,248,0.12);color:#8b7cf8;border:1px solid rgba(139,124,248,0.3);}
+.s4 .step-circle{background:rgba(245,166,35,0.12);color:#f5a623;border:1px solid rgba(245,166,35,0.3);}
+.s5 .step-circle{background:rgba(240,98,146,0.12);color:#f06292;border:1px solid rgba(240,98,146,0.3);}
+.s6 .step-circle{background:rgba(76,175,138,0.12);color:#4caf8a;border:1px solid rgba(76,175,138,0.3);}
+.step-num-label h3{font-size:0.68rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;}
+.s1 .step-num-label h3{color:var(--green);}
+.s2 .step-num-label h3{color:#00a3cc;}
+.s3 .step-num-label h3{color:#8b7cf8;}
+.s4 .step-num-label h3{color:#f5a623;}
+.s5 .step-num-label h3{color:#f06292;}
+.s6 .step-num-label h3{color:#4caf8a;}
+
+.step-inner{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.6rem 1.8rem;}
+.step-inner h4{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--heading);margin-bottom:0.8rem;}
+.step-inner p{color:var(--soft);font-size:0.88rem;margin-bottom:0.7rem;}
+.step-inner p:last-child{margin-bottom:0;}
+
+/* LISTS */
+.check-list{list-style:none;display:flex;flex-direction:column;gap:0.35rem;margin-top:0.4rem;}
+.check-list li{font-size:0.87rem;color:var(--soft);display:flex;align-items:flex-start;gap:0.6rem;}
+.check-list li::before{content:'→';color:var(--green);flex-shrink:0;margin-top:0.05rem;font-size:0.8rem;}
+.check-list.red li::before{content:'✗';color:#f06292;}
+.check-list.tick li::before{content:'✓';color:var(--green);}
+strong{color:var(--heading);font-weight:500;}
+
+/* TWO-COL CONTENT */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:0.7rem;}
+.col-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.2rem 1.4rem;}
+.col-card h5{font-size:0.7rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.7rem;}
+
+/* TABLE */
+.tbl-wrap{overflow-x:auto;margin-top:0.7rem;}
+table{width:100%;border-collapse:collapse;font-size:0.82rem;}
+th{background:var(--surface);color:var(--muted);font-size:0.68rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:0.6rem 0.9rem;border-bottom:1px solid var(--border);text-align:left;}
+td{padding:0.6rem 0.9rem;border-bottom:1px solid var(--border);color:var(--soft);}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:rgba(0,212,126,0.03);}
+.red-txt{color:#f06292;font-weight:500;}
+.amber-txt{color:#f5a623;font-weight:500;}
+.green-txt{color:var(--green);font-weight:500;}
+
+/* STAT ROW */
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:0.8rem;margin-top:0.7rem;}
+.stat-box{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.1rem;text-align:center;}
+.stat-val{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--green);line-height:1;}
+.stat-lab{font-size:0.7rem;color:var(--muted);margin-top:0.3rem;letter-spacing:0.05em;}
+
+/* FLOW CHAIN */
+.flow-chain{display:flex;flex-wrap:wrap;align-items:center;gap:0;margin-top:0.7rem;}
+.flow-node{background:var(--surface);border:1px solid var(--border2);border-radius:8px;padding:0.5rem 0.85rem;font-size:0.78rem;color:var(--soft);white-space:nowrap;}
+.flow-arrow{color:var(--green);font-size:0.9rem;margin:0 0.3rem;opacity:0.5;}
+
+/* DELIVERABLE BADGES */
+.del-row{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.6rem;}
+.del-badge{background:rgba(0,212,126,0.08);border:1px solid rgba(0,212,126,0.2);color:var(--green);font-size:0.7rem;font-weight:500;padding:0.25rem 0.75rem;border-radius:100px;}
+
+/* BEFORE/AFTER */
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:0.7rem;}
+.ba-card{border-radius:10px;padding:1.2rem 1.4rem;}
+.ba-before{background:rgba(240,98,146,0.06);border:1px solid rgba(240,98,146,0.18);}
+.ba-after{background:rgba(0,212,126,0.06);border:1px solid rgba(0,212,126,0.18);}
+.ba-card h5{font-size:0.7rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.7rem;}
+.ba-before h5{color:#f06292;}
+.ba-after h5{color:var(--green);}
+
+/* ── POWER BI DASHBOARD MOCKUP ── */
+.pbi-wrap{background:#1a1f2e;border:1px solid #2a3050;border-radius:14px;overflow:hidden;margin-top:0.7rem;}
+.pbi-topbar{background:#1e2438;padding:0.6rem 1.2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #2a3050;}
+.pbi-title-bar{font-size:0.75rem;color:#8090b0;font-weight:500;}
+.pbi-logo{font-size:0.65rem;color:#f2c811;font-weight:600;letter-spacing:0.05em;}
+.pbi-body{padding:1.2rem;}
+.pbi-heading{font-size:0.8rem;color:#c0ccdd;font-weight:500;margin-bottom:0.2rem;}
+.pbi-sub{font-size:0.65rem;color:#607080;margin-bottom:1rem;}
+.pbi-kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0.6rem;margin-bottom:1rem;}
+.pbi-kpi{background:#242938;border-radius:8px;padding:0.8rem 0.7rem;text-align:center;}
+.pbi-kpi-val{font-size:1.3rem;font-weight:700;line-height:1;}
+.pbi-kpi-lab{font-size:0.62rem;color:#607080;margin-top:0.25rem;}
+.pbi-charts{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-bottom:0.8rem;}
+.pbi-chart-card{background:#242938;border-radius:8px;padding:0.9rem;}
+.pbi-chart-title{font-size:0.66rem;color:#8090b0;font-weight:500;margin-bottom:0.7rem;text-transform:uppercase;letter-spacing:0.08em;}
+/* bar chart */
+.bar-chart{display:flex;align-items:flex-end;gap:0.4rem;height:70px;}
+.bar-col{display:flex;flex-direction:column;align-items:center;gap:0.2rem;flex:1;}
+.bar{border-radius:3px 3px 0 0;width:100%;min-height:4px;}
+.bar-lbl{font-size:0.58rem;color:#607080;}
+/* line sparkline */
+.spark{height:60px;width:100%;}
+/* donut placeholder */
+.donut-row{display:flex;align-items:center;gap:1rem;}
+.donut-svg{flex-shrink:0;}
+.donut-legend{display:flex;flex-direction:column;gap:0.3rem;}
+.d-leg{display:flex;align-items:center;gap:0.4rem;font-size:0.62rem;color:#8090b0;}
+.d-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+/* table in pbi */
+.pbi-table{width:100%;border-collapse:collapse;font-size:0.68rem;}
+.pbi-table th{background:#1e2438;color:#607080;padding:0.4rem 0.6rem;text-align:left;font-weight:400;}
+.pbi-table td{padding:0.4rem 0.6rem;border-top:1px solid #2a3050;color:#8090b0;}
+.pbi-table tr:nth-child(odd) td{background:#1e2230;}
+/* progress bar fulfilment */
+.pbi-prog-row{display:flex;flex-direction:column;gap:0.4rem;}
+.pbi-prog-item{display:flex;align-items:center;gap:0.5rem;}
+.pbi-prog-lbl{font-size:0.62rem;color:#8090b0;width:70px;flex-shrink:0;}
+.pbi-prog-bar{flex:1;height:6px;background:#2a3050;border-radius:3px;overflow:hidden;}
+.pbi-prog-fill{height:100%;border-radius:3px;}
+.pbi-prog-val{font-size:0.62rem;color:#8090b0;width:32px;text-align:right;flex-shrink:0;}
+
+/* ── EXCEL MOCKUP ── */
+.excel-wrap{background:#1a2010;border:1px solid #2a3820;border-radius:14px;overflow:hidden;margin-top:0.7rem;}
+.excel-topbar{background:#1e3018;padding:0.5rem 1rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #2a3820;}
+.excel-logo{font-size:0.65rem;color:#6cc04a;font-weight:600;letter-spacing:0.04em;}
+.excel-tabs{display:flex;gap:0;}
+.excel-tab{font-size:0.62rem;color:#507040;padding:0.2rem 0.8rem;cursor:default;}
+.excel-tab.active{background:#1a2010;color:#8dc870;border-top:2px solid #6cc04a;}
+.excel-body{padding:0;}
+.excel-header-row{display:grid;background:#1e3018;border-bottom:1px solid #2a3820;}
+.excel-row{display:grid;border-bottom:1px solid rgba(42,56,32,0.5);}
+.excel-cell{padding:0.35rem 0.7rem;font-size:0.7rem;color:#6a9060;border-right:1px solid rgba(42,56,32,0.4);}
+.excel-cell.hdr{color:#4a7040;font-weight:500;font-size:0.65rem;}
+.excel-cell.num{text-align:right;}
+.excel-cell.a-item{color:#6cc04a;}
+.excel-cell.b-item{color:#f5a623;}
+.excel-cell.c-item{color:#f06292;}
+.excel-cell.total{color:#8dc870;font-weight:500;background:rgba(108,192,74,0.06);}
+
+/* ABC CHART */
+.abc-bar-chart{display:flex;align-items:flex-end;gap:3px;height:80px;margin-top:0.5rem;padding:0 0.2rem;}
+.abc-bar{border-radius:3px 3px 0 0;position:relative;display:flex;align-items:flex-start;justify-content:center;}
+.abc-bar span{font-size:0.55rem;color:#1a2010;padding-top:2px;font-weight:500;}
+
+/* RISK MATRIX */
+.risk-matrix{display:grid;grid-template-columns:auto repeat(4,1fr);gap:2px;margin-top:0.7rem;font-size:0.68rem;}
+.rm-head{background:var(--surface);border:1px solid var(--border);padding:0.4rem 0.5rem;text-align:center;color:var(--muted);font-size:0.62rem;border-radius:4px;}
+.rm-cell{padding:0.55rem 0.5rem;border-radius:6px;text-align:center;font-size:0.7rem;font-weight:500;}
+.rm-label{background:var(--surface);border:1px solid var(--border);padding:0.4rem 0.6rem;color:var(--muted);font-size:0.65rem;display:flex;align-items:center;border-radius:4px;}
+.rm-low{background:rgba(0,212,126,0.1);color:var(--green);border:1px solid rgba(0,212,126,0.2);}
+.rm-med{background:rgba(245,166,35,0.1);color:#f5a623;border:1px solid rgba(245,166,35,0.2);}
+.rm-high{background:rgba(240,98,146,0.12);color:#f06292;border:1px solid rgba(240,98,146,0.2);}
+.rm-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:4px;}
+
+/* SECTION DIVIDER */
+.sec-divider{border:none;border-top:1px solid var(--border);margin:0;}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:2rem 6%;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;flex-wrap:wrap;gap:0.5rem;}
+footer p{color:var(--muted);font-size:0.75rem;}
+footer a{color:var(--green);text-decoration:none;}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.6s,transform 0.6s;}
+.reveal.visible{opacity:1;transform:none;}
+
+@keyframes up{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+
+/* RESPONSIVE */
+@media(max-width:720px){
+  .two-col,.ba-grid,.pbi-charts{grid-template-columns:1fr;}
+  .pbi-kpi-row{grid-template-columns:repeat(2,1fr);}
+  .proj-header-block{flex-direction:column;gap:0.5rem;}
+  .proj-big-num{font-size:3rem;}
+  nav .nav-links{display:none;}
+  .flow-chain{flex-direction:column;align-items:flex-start;}
+  .flow-arrow{transform:rotate(90deg);}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Dewmini Tharindi</div>
+  <ul class="nav-links">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#project-1">Project 1</a></li>
+    <li><a href="#project-2">Project 2</a></li>
+    <li><a href="#project-3">Project 3</a></li>
+    <li><a href="#project-4">Project 4</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Supply Chain Management Portfolio</div>
+    <h1>Supply Chain<br/><em>Projects</em></h1>
+    <p class="hero-meta">Dewmini Tharindi <span>·</span> SLTC Research University <span>·</span> 2023–2027</p>
+    <p class="hero-desc">Four applied supply chain management projects spanning field observation, inventory analysis, data analytics, and export chain risk assessment — grounded in real-world data and industry-standard methodologies.</p>
+    <div class="hero-btn"><a href="#overview">View Projects</a></div>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<section class="overview" id="overview">
+  <div class="overview-head reveal">
+    <div class="sec-label">Portfolio Overview</div>
+    <h2>4 Projects. 4 Methodologies.</h2>
+    <p>Each project applies a distinct supply chain management framework to a real-world problem — from campus canteen operations to Sri Lanka's global tea export chain.</p>
+  </div>
+  <div class="cards-row">
+    <a href="#project-1" style="text-decoration:none;">
+    <div class="ov-card reveal">
+      <div class="ov-num">01</div>
+      <div class="ov-status">Complete</div>
+      <div class="ov-title">Campus Canteen Supply Chain Mapping</div>
+      <div class="ov-tags">
+        <span class="ov-tag">Flow Mapping</span><span class="ov-tag">Field Study</span><span class="ov-tag">Waste Audit</span>
+      </div>
+    </div>
+    </a>
+    <a href="#project-2" style="text-decoration:none;">
+    <div class="ov-card reveal">
+      <div class="ov-num">02</div>
+      <div class="ov-status">Complete</div>
+      <div class="ov-title">Small Pharmacy Inventory Study</div>
+      <div class="ov-tags">
+        <span class="ov-tag">ABC Analysis</span><span class="ov-tag">Excel</span><span class="ov-tag">Power BI</span>
+      </div>
+    </div>
+    </a>
+    <a href="#project-3" style="text-decoration:none;">
+    <div class="ov-card reveal">
+      <div class="ov-num">03</div>
+      <div class="ov-status">Complete</div>
+      <div class="ov-title">Kaggle Supply Chain Dataset Analysis</div>
+      <div class="ov-tags">
+        <span class="ov-tag">Power BI</span><span class="ov-tag">Excel</span><span class="ov-tag">KPI Design</span>
+      </div>
+    </div>
+    </a>
+    <a href="#project-4" style="text-decoration:none;">
+    <div class="ov-card reveal">
+      <div class="ov-num">04</div>
+      <div class="ov-status">Complete</div>
+      <div class="ov-title">Sri Lanka Tea Export Supply Chain</div>
+      <div class="ov-tags">
+        <span class="ov-tag">Risk Matrix</span><span class="ov-tag">Research</span><span class="ov-tag">Flow Diagram</span>
+      </div>
+    </div>
+    </a>
+  </div>
+</section>
+
+<hr class="sec-divider"/>
+
+<!-- ═══════════════════════════════════════════════════
+     PROJECT 1
+════════════════════════════════════════════════════ -->
+<section class="proj-section" id="project-1">
+  <div class="proj-header-block reveal">
+    <div class="proj-big-num">01</div>
+    <div class="proj-header-text">
+      <div class="proj-type">Field Study · Flow Mapping · Waste Audit</div>
+      <h2>Campus Canteen Supply Chain Mapping</h2>
+      <div class="proj-tool-row">
+        <span class="tool-pill">Direct Observation</span>
+        <span class="tool-pill">Flow Diagramming</span>
+        <span class="tool-pill">Waste Audit</span>
+        <span class="tool-pill">Root Cause Analysis</span>
+        <span class="tool-pill">Supplier Mapping</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="step-block s1 reveal">
+    <div class="step-num-label"><div class="step-circle">01</div><h3>Problem Statement</h3></div>
+    <div class="step-inner">
+      <h4>What is the problem?</h4>
+      <p>The SLTC Research University campus canteen has no structured supply chain management system. Ingredients are ordered based on personal judgement with no historical demand data, storage conditions do not always match food safety requirements, and large quantities of cooked food are discarded at the end of every service day with no redistribution or composting pathway.</p>
+      <p>There is no record of supplier deliveries, no inventory tracking, and no feedback mechanism between daily waste and future ordering decisions. This creates a cycle of over-ordering, over-cooking, and wastage that generates unnecessary cost and environmental impact every single day.</p>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step-block s2 reveal">
+    <div class="step-num-label"><div class="step-circle">02</div><h3>Objectives</h3></div>
+    <div class="step-inner">
+      <h4>What will this project answer?</h4>
+      <ul class="check-list">
+        <li>Map the full supply chain from supplier to waste disposal across all 6 stages</li>
+        <li>Identify at least 2–3 specific operational inefficiencies in the chain</li>
+        <li>Quantify waste levels and estimate the financial cost of current practices</li>
+        <li>Propose practical, low-cost improvements for each inefficiency identified</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step-block s3 reveal">
+    <div class="step-num-label"><div class="step-circle">03</div><h3>Methodology</h3></div>
+    <div class="step-inner">
+      <h4>How was this analysed?</h4>
+      <div class="two-col">
+        <div class="col-card">
+          <h5>Direct Observation</h5>
+          <p>One-hour structured observation at the SLTC campus canteen during peak lunch service (12:00–1:00 pm). Observed ingredient handling, storage conditions, queue flow, and end-of-day disposal practices.</p>
+        </div>
+        <div class="col-card">
+          <h5>Staff Interview</h5>
+          <p>Informal structured interview with kitchen staff covering: how ingredients are ordered, who the suppliers are, order frequency, storage methods, and what happens to leftover food at end of day.</p>
+        </div>
+        <div class="col-card">
+          <h5>Flow Diagram</h5>
+          <p>Mapped full 6-stage supply chain: <strong>Supplier → Delivery → Storage → Preparation → Service → Waste</strong>. Annotated bottlenecks and inefficiency points directly on the diagram.</p>
+        </div>
+        <div class="col-card">
+          <h5>Waste Audit</h5>
+          <p>Estimated daily food waste quantity and cost per day. Identified categories of wasted food (rice, curry, short eats) and cross-referenced with ordering volumes to estimate over-ordering rate.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step-block s4 reveal">
+    <div class="step-num-label"><div class="step-circle">04</div><h3>Key Findings</h3></div>
+    <div class="step-inner">
+      <h4>Supply Chain Flow — As Observed</h4>
+      <div class="flow-chain">
+        <div class="flow-node">🌾 Local Supplier</div><div class="flow-arrow">→</div>
+        <div class="flow-node">🚚 Daily Delivery</div><div class="flow-arrow">→</div>
+        <div class="flow-node">📦 Ambient Storage</div><div class="flow-arrow">→</div>
+        <div class="flow-node">🍳 Preparation</div><div class="flow-arrow">→</div>
+        <div class="flow-node">🍽 Service</div><div class="flow-arrow">→</div>
+        <div class="flow-node">🗑 Disposal</div>
+      </div>
+      <div class="tbl-wrap" style="margin-top:1.2rem;">
+        <table>
+          <thead>
+            <tr><th>Stage</th><th>Current Practice</th><th>Inefficiency</th><th>Impact</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Ordering</td><td>Daily oral order to supplier, no record</td><td class="red-txt">No demand history — over-order by ~23%</td><td>LKR 1,500–2,000 wasted daily</td></tr>
+            <tr><td>Delivery</td><td>Supplier delivers each morning, no checklist</td><td class="amber-txt">Quantities unverified on receipt</td><td>Discrepancies go unnoticed</td></tr>
+            <tr><td>Storage</td><td>Ambient room temperature for all items</td><td class="red-txt">Refrigeration-required items stored incorrectly</td><td>Accelerated spoilage, food safety risk</td></tr>
+            <tr><td>Preparation</td><td>Cook all ingredients in one batch at 9 am</td><td class="amber-txt">No batch cooking — full quantity cooked regardless of demand</td><td>Surplus unavoidable at end of day</td></tr>
+            <tr><td>Service</td><td>Serve until stock runs out or service ends</td><td>—</td><td>Acceptable</td></tr>
+            <tr><td>Waste</td><td>All leftovers binned at 2 pm</td><td class="red-txt">~LKR 4,200 of food discarded daily — no donation or composting</td><td>Financial and environmental loss</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="stat-row" style="margin-top:1rem;">
+        <div class="stat-box"><div class="stat-val">23%</div><div class="stat-lab">Average over-ordering rate</div></div>
+        <div class="stat-box"><div class="stat-val" style="color:#f5a623;">LKR 4.2K</div><div class="stat-lab">Food cost wasted per day</div></div>
+        <div class="stat-box"><div class="stat-val">3</div><div class="stat-lab">Critical inefficiencies found</div></div>
+        <div class="stat-box"><div class="stat-val" style="color:#f06292;">0</div><div class="stat-lab">Demand records kept</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="step-block s5 reveal">
+    <div class="step-num-label"><div class="step-circle">05</div><h3>Recommendations</h3></div>
+    <div class="step-inner">
+      <h4>Improvements for Each Inefficiency</h4>
+      <div class="check-list" style="margin-top:0;">
+        <li><strong>Introduce a 7-day rolling sales log</strong> — record portions served each day. Review weekly to set next week's order quantities. Eliminates intuition-based over-ordering.</li>
+        <li><strong>Upgrade cold storage</strong> — install a two-door under-counter chiller for perishable items (dairy, meat, vegetables). Reduces spoilage and improves food safety compliance.</li>
+        <li><strong>Switch to batch cooking</strong> — prepare food in two rounds: a main batch at 11:30 am, a top-up batch only if demand warrants. Reduces end-of-day surplus significantly.</li>
+        <li><strong>Partner with campus welfare unit</strong> for end-of-day redistribution of unsold food. Eliminates 100% of daily disposal waste and supports student welfare.</li>
+        <li><strong>Introduce a delivery checklist</strong> — staff sign off on quantities received from supplier. Prevents unnoticed discrepancies and builds a supplier accountability record.</li>
+      </div>
+      <div class="ba-grid" style="margin-top:1rem;">
+        <div class="ba-card ba-before">
+          <h5>Before — Current State</h5>
+          <ul class="check-list red">
+            <li>Ordering based on intuition — no data</li>
+            <li>Refrigeration-needed items stored at ambient temp</li>
+            <li>All food cooked in one batch regardless of demand</li>
+            <li>~LKR 4,200 discarded daily — no redistribution</li>
+          </ul>
+        </div>
+        <div class="ba-card ba-after">
+          <h5>After — Recommended State</h5>
+          <ul class="check-list tick">
+            <li>7-day demand log guides order quantities</li>
+            <li>Dedicated chiller for perishable items</li>
+            <li>Two-batch cooking reduces end-of-day surplus</li>
+            <li>Welfare partnership eliminates food waste disposal</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 6 -->
+  <div class="step-block s6 reveal">
+    <div class="step-num-label"><div class="step-circle">06</div><h3>Deliverable</h3></div>
+    <div class="step-inner">
+      <h4>Output of this Project</h4>
+      <div class="del-row">
+        <span class="del-badge">Supply chain flow diagram (6 stages)</span>
+        <span class="del-badge">Inefficiency annotation map</span>
+        <span class="del-badge">Improvement recommendation report</span>
+        <span class="del-badge">Waste audit summary</span>
+      </div>
+      <p style="margin-top:1rem;">Full annotated flow diagram mapping all six stages of the campus canteen supply chain with colour-coded inefficiency markers. Accompanied by a one-page written report summarising findings and five prioritised improvement recommendations with implementation notes.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="sec-divider"/>
+
+<!-- ═══════════════════════════════════════════════════
+     PROJECT 2
+════════════════════════════════════════════════════ -->
+<section class="proj-section" id="project-2">
+  <div class="proj-header-block reveal">
+    <div class="proj-big-num">02</div>
+    <div class="proj-header-text">
+      <div class="proj-type">Case Study · Inventory Analysis · Power BI</div>
+      <h2>Small Pharmacy Inventory Study</h2>
+      <div class="proj-tool-row">
+        <span class="tool-pill">ABC Classification</span>
+        <span class="tool-pill">Reorder Point Modelling</span>
+        <span class="tool-pill">Microsoft Excel</span>
+        <span class="tool-pill">Power BI Dashboard</span>
+        <span class="tool-pill">Structured Interview</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="step-block s1 reveal">
+    <div class="step-num-label"><div class="step-circle">01</div><h3>Problem Statement</h3></div>
+    <div class="step-inner">
+      <h4>What is the problem?</h4>
+      <p>A small neighbourhood pharmacy in Colombo manages over 80 SKUs with no formal inventory classification system. Fast-moving medicines such as paracetamol and antacids regularly face stock-outs because reorder decisions are made from memory, while slow-moving specialty items accumulate past their expiry dates — generating financial losses on both ends.</p>
+      <p>Without an ABC classification framework or calculated reorder points, the pharmacy owner cannot distinguish between high-value items needing tight control and low-value items needing minimal attention. This project applies ABC analysis and inventory modelling to bring structure to their inventory management.</p>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step-block s2 reveal">
+    <div class="step-num-label"><div class="step-circle">02</div><h3>Objectives</h3></div>
+    <div class="step-inner">
+      <h4>What will this project answer?</h4>
+      <ul class="check-list">
+        <li>Classify all 80 SKUs into A, B, and C tiers by revenue contribution</li>
+        <li>Calculate reorder points for A-category medicines using demand and lead time data</li>
+        <li>Identify C-items at risk of expiry within the next 60 days</li>
+        <li>Build a Power BI dashboard for ongoing inventory monitoring</li>
+        <li>Produce a one-page case study report with actionable recommendations</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step-block s3 reveal">
+    <div class="step-num-label"><div class="step-circle">03</div><h3>Methodology</h3></div>
+    <div class="step-inner">
+      <h4>How was this analysed?</h4>
+      <div class="two-col">
+        <div class="col-card">
+          <h5>Field Interview (45 mins)</h5>
+          <p>Structured interview with pharmacy owner covering: top-selling medicines, slow movers, reorder process, supplier lead times, and expiry incidents. Data manually recorded and transferred to Excel.</p>
+        </div>
+        <div class="col-card">
+          <h5>ABC Classification (Excel)</h5>
+          <p>Sorted 80 SKUs by annual revenue. Applied 80/20 rule: A = top 20% SKUs by cumulative revenue contribution, B = next 30%, C = remaining 50%. Pivot table used to validate classification.</p>
+        </div>
+        <div class="col-card">
+          <h5>Reorder Point Formula</h5>
+          <p>Calculated for all A-items using: <strong>ROP = Avg. Daily Sales × Lead Time (days) + Safety Stock</strong>. Safety stock set at 5 days' supply for all A-items to prevent stock-out risk.</p>
+        </div>
+        <div class="col-card">
+          <h5>Power BI Dashboard</h5>
+          <p>Built a 2-page Power BI report using the Excel dataset. Page 1: ABC tier overview with KPI cards. Page 2: Expiry risk table for C-items filtered by days remaining to expiry.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4 — EXCEL MOCKUP + ABC -->
+  <div class="step-block s4 reveal">
+    <div class="step-num-label"><div class="step-circle">04</div><h3>Key Findings</h3></div>
+    <div class="step-inner">
+      <h4>ABC Classification — Excel Dataset (Sample)</h4>
+      <div class="excel-wrap">
+        <div class="excel-topbar">
+          <div class="excel-logo">📗 Microsoft Excel — Pharmacy_Inventory_ABC.xlsx</div>
+          <div class="excel-tabs">
+            <div class="excel-tab active">ABC Classification</div>
+            <div class="excel-tab">Reorder Points</div>
+            <div class="excel-tab">Expiry Risk</div>
+          </div>
+        </div>
+        <div class="excel-body">
+          <div class="excel-header-row" style="grid-template-columns:2rem 2fr 1fr 1fr 1fr 1fr 0.8fr;">
+            <div class="excel-cell hdr"></div>
+            <div class="excel-cell hdr">Product Name</div>
+            <div class="excel-cell hdr num">Avg Daily Sales</div>
+            <div class="excel-cell hdr num">Annual Revenue (LKR)</div>
+            <div class="excel-cell hdr num">Cumulative %</div>
+            <div class="excel-cell hdr num">Lead Time (days)</div>
+            <div class="excel-cell hdr">ABC Tier</div>
+          </div>
+          <div class="excel-row" style="grid-template-columns:2rem 2fr 1fr 1fr 1fr 1fr 0.8fr;">
+            <div class="excel-cell">1</div><div class="excel-cell">Paracetamol 500mg</div><div class="excel-cell num">42</div><div class="excel-cell num">84,000</div><div class="excel-cell num">14.8%</div><div class="excel-cell num">2</div><div class="excel-cell a-item">A</div>
+          </div>
+          <div class="excel-row" style="grid-template-columns:2rem 2fr 1fr 1fr 1fr 1fr 0.8fr;">
+            <div class="excel-cell">2</div><div class="excel-cell">Antacid (Gelusil)</div><div class="excel-cell num">35</div><div class="excel-cell num">70,000</div><div class="excel-cell num">27.1%</div><div class="excel-cell num">2</div><div class="excel-cell a-item">A</div>
+          </div>
+          <div class="excel-row" style="grid-template-columns:2rem 2fr 1fr 1fr 1fr 1fr 0.8fr;">
+            <div class="excel-cell">3</div><div class="excel-cell">ORS Sachets</div><div class="excel-cell num">28</div><div class="excel-cell num">56,000</div><div class="excel-cell num">37.0%</div><div class="excel-cell num">3</div><div class="excel-cell a-item">A</div>
+          </div>
+          <div class="excel-row" style="grid-template-columns:2rem 2fr 1fr 1fr 1fr 1fr 0.8fr;">
+            <div class="excel-cell">4</div><div class="excel-cell">Vitamin C 1000mg</div><div class="excel-cell num">18</div><div class="excel-cell num">36,000</div><div class="excel-cell num">55.4%</div><div class="excel-cell num">4</div><div class="excel-cell b-item">B</div>
+          </div>
+          <div class="excel-row" style="grid-template-columns:2rem 2fr 1fr 1fr 1fr 1fr 0.8fr;">
+            <div class="excel-cell">5</div><div class="excel-cell">Antihistamine (CTZ)</div><div class="excel-cell num">12</div><div class="excel-cell num">24,000</div><div class="excel-cell num">63.6%</div><div class="excel-cell num">4</div><div class="excel-cell b-item">B</div>
+          </div>
+          <div class="excel-row" style="grid-template-columns:2rem 2fr 1fr 1fr 1fr 1fr 0.8fr;">
+            <div class="excel-cell">6</div><div class="excel-cell">Specialty Supplement X</div><div class="excel-cell num">2</div><div class="excel-cell num">4,000</div><div class="excel-cell num">89.2%</div><div class="excel-cell num">7</div><div class="excel-cell c-item">C</div>
+          </div>
+          <div class="excel-row" style="grid-template-columns:2rem 2fr 1fr 1fr 1fr 1fr 0.8fr;">
+            <div class="excel-cell">7</div><div class="excel-cell">Herbal Eye Drops</div><div class="excel-cell num">1</div><div class="excel-cell num">2,200</div><div class="excel-cell num">93.8%</div><div class="excel-cell num">7</div><div class="excel-cell c-item">C</div>
+          </div>
+          <div class="excel-row total" style="grid-template-columns:2rem 2fr 1fr 1fr 1fr 1fr 0.8fr;">
+            <div class="excel-cell"></div><div class="excel-cell total"><strong>TOTALS — 80 SKUs</strong></div><div class="excel-cell num">—</div><div class="excel-cell num total">567,800</div><div class="excel-cell num">100%</div><div class="excel-cell num">—</div><div class="excel-cell">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-row" style="margin-top:1rem;">
+        <div class="stat-box"><div class="stat-val">16</div><div class="stat-lab">A-items · 74% of revenue</div></div>
+        <div class="stat-box"><div class="stat-val" style="color:#f5a623;">15</div><div class="stat-lab">B-items · 18% of revenue</div></div>
+        <div class="stat-box"><div class="stat-val" style="color:#f06292;">49</div><div class="stat-lab">C-items · 8% of revenue</div></div>
+        <div class="stat-box"><div class="stat-val" style="color:#f06292;">6</div><div class="stat-lab">C-items at expiry risk (&lt;60 days)</div></div>
+      </div>
+
+      <div class="tbl-wrap" style="margin-top:1.2rem;">
+        <p style="font-size:0.75rem;color:var(--muted);margin-bottom:0.5rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;">Reorder Point Calculations — A-Items</p>
+        <table>
+          <thead>
+            <tr><th>Product</th><th>Avg Daily Sales</th><th>Lead Time (days)</th><th>Safety Stock</th><th>Reorder Point</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Paracetamol 500mg</td><td>42 units</td><td>2 days</td><td>210 units</td><td class="green-txt">294 units</td></tr>
+            <tr><td>Antacid (Gelusil)</td><td>35 units</td><td>2 days</td><td>175 units</td><td class="green-txt">245 units</td></tr>
+            <tr><td>ORS Sachets</td><td>28 units</td><td>3 days</td><td>140 units</td><td class="green-txt">224 units</td></tr>
+            <tr><td>Ibuprofen 400mg</td><td>22 units</td><td>2 days</td><td>110 units</td><td class="green-txt">154 units</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:0.75rem;color:var(--muted);margin-top:0.4rem;font-style:italic;">Formula: ROP = (Avg Daily Sales × Lead Time) + Safety Stock &nbsp;|&nbsp; Safety stock = 5 days' supply for all A-items</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="step-block s5 reveal">
+    <div class="step-num-label"><div class="step-circle">05</div><h3>Recommendations</h3></div>
+    <div class="step-inner">
+      <h4>Inventory Management Improvements</h4>
+      <ul class="check-list">
+        <li><strong>Differential reorder rules by tier:</strong> daily stock check for A-items, weekly for B-items, monthly review for C-items. Match monitoring effort to revenue impact.</li>
+        <li><strong>Enforce ROP triggers for A-items</strong> — create a simple alert system (highlighted row in Excel) that flags items falling below their calculated reorder point.</li>
+        <li><strong>Reduce C-item order quantities</strong> — negotiate smaller, more frequent deliveries from suppliers to prevent over-stocking low-demand items that expire on shelves.</li>
+        <li><strong>Promote near-expiry C-items</strong> through front-of-counter placement, bundled offers, or small discounts to recover cost before items pass their expiry date.</li>
+        <li><strong>Review C-item portfolio quarterly</strong> — discontinue SKUs that have not sold in 90+ days to reduce capital tied up in dead stock.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STEP 6 — POWER BI MOCKUP -->
+  <div class="step-block s6 reveal">
+    <div class="step-num-label"><div class="step-circle">06</div><h3>Deliverable</h3></div>
+    <div class="step-inner">
+      <h4>Power BI Dashboard — Pharmacy Inventory</h4>
+      <div class="del-row" style="margin-bottom:1rem;">
+        <span class="del-badge">1-page case study report</span>
+        <span class="del-badge">Excel ABC model (80 SKUs)</span>
+        <span class="del-badge">Power BI dashboard</span>
+        <span class="del-badge">Reorder point calculator</span>
+      </div>
+      <div class="pbi-wrap">
+        <div class="pbi-topbar">
+          <div class="pbi-title-bar">📊 Pharmacy Inventory Dashboard — ABC Analysis &amp; Reorder Monitoring</div>
+          <div class="pbi-logo">⚡ Power BI</div>
+        </div>
+        <div class="pbi-body">
+          <div class="pbi-heading">Pharmacy Inventory Overview</div>
+          <div class="pbi-sub">Neighbourhood Pharmacy, Colombo · Data: Simulated field study · 80 SKUs</div>
+          <div class="pbi-kpi-row">
+            <div class="pbi-kpi"><div class="pbi-kpi-val" style="color:#6cc04a;">16</div><div class="pbi-kpi-lab">A-Items (74% rev.)</div></div>
+            <div class="pbi-kpi"><div class="pbi-kpi-val" style="color:#f5a623;">15</div><div class="pbi-kpi-lab">B-Items (18% rev.)</div></div>
+            <div class="pbi-kpi"><div class="pbi-kpi-val" style="color:#f06292;">49</div><div class="pbi-kpi-lab">C-Items (8% rev.)</div></div>
+            <div class="pbi-kpi"><div class="pbi-kpi-val" style="color:#f06292;">6</div><div class="pbi-kpi-lab">Expiry Risk (&lt;60d)</div></div>
+          </div>
+          <div class="pbi-charts">
+            <div class="pbi-chart-card">
+              <div class="pbi-chart-title">Revenue by ABC Tier</div>
+              <div class="donut-row">
+                <svg class="donut-svg" width="80" height="80" viewBox="0 0 80 80">
+                  <circle cx="40" cy="40" r="28" fill="none" stroke="#2a3050" stroke-width="14"/>
+                  <circle cx="40" cy="40" r="28" fill="none" stroke="#6cc04a" stroke-width="14" stroke-dasharray="131 44" stroke-dashoffset="0" transform="rotate(-90 40 40)"/>
+                  <circle cx="40" cy="40" r="28" fill="none" stroke="#f5a623" stroke-width="14" stroke-dasharray="32 143" stroke-dashoffset="-131" transform="rotate(-90 40 40)"/>
+                  <circle cx="40" cy="40" r="28" fill="none" stroke="#f06292" stroke-width="14" stroke-dasharray="12 163" stroke-dashoffset="-163" transform="rotate(-90 40 40)"/>
+                  <text x="40" y="44" text-anchor="middle" font-size="9" fill="#8090b0">80 SKUs</text>
+                </svg>
+                <div class="donut-legend">
+                  <div class="d-leg"><div class="d-dot" style="background:#6cc04a;"></div> A-items — 74%</div>
+                  <div class="d-leg"><div class="d-dot" style="background:#f5a623;"></div> B-items — 18%</div>
+                  <div class="d-leg"><div class="d-dot" style="background:#f06292;"></div> C-items — 8%</div>
+                </div>
+              </div>
+            </div>
+            <div class="pbi-chart-card">
+              <div class="pbi-chart-title">Top 5 SKUs by Daily Sales Volume</div>
+              <div class="bar-chart" style="height:80px;">
+                <div class="bar-col"><div class="bar" style="height:80px;background:#6cc04a;"></div><div class="bar-lbl">PCM</div></div>
+                <div class="bar-col"><div class="bar" style="height:67px;background:#6cc04a;"></div><div class="bar-lbl">Antacid</div></div>
+                <div class="bar-col"><div class="bar" style="height:54px;background:#6cc04a;"></div><div class="bar-lbl">ORS</div></div>
+                <div class="bar-col"><div class="bar" style="height:42px;background:#f5a623;"></div><div class="bar-lbl">Vit C</div></div>
+                <div class="bar-col"><div class="bar" style="height:30px;background:#f5a623;"></div><div class="bar-lbl">CTZ</div></div>
+              </div>
+            </div>
+            <div class="pbi-chart-card">
+              <div class="pbi-chart-title">Reorder Status — A-Items</div>
+              <div class="pbi-prog-row">
+                <div class="pbi-prog-item"><div class="pbi-prog-lbl">Paracetamol</div><div class="pbi-prog-bar"><div class="pbi-prog-fill" style="width:82%;background:#6cc04a;"></div></div><div class="pbi-prog-val" style="color:#6cc04a;">OK</div></div>
+                <div class="pbi-prog-item"><div class="pbi-prog-lbl">Antacid</div><div class="pbi-prog-bar"><div class="pbi-prog-fill" style="width:55%;background:#f5a623;"></div></div><div class="pbi-prog-val" style="color:#f5a623;">LOW</div></div>
+                <div class="pbi-prog-item"><div class="pbi-prog-lbl">ORS Sachets</div><div class="pbi-prog-bar"><div class="pbi-prog-fill" style="width:31%;background:#f06292;"></div></div><div class="pbi-prog-val" style="color:#f06292;">ORDER</div></div>
+                <div class="pbi-prog-item"><div class="pbi-prog-lbl">Ibuprofen</div><div class="pbi-prog-bar"><div class="pbi-prog-fill" style="width:70%;background:#6cc04a;"></div></div><div class="pbi-prog-val" style="color:#6cc04a;">OK</div></div>
+              </div>
+            </div>
+            <div class="pbi-chart-card">
+              <div class="pbi-chart-title">C-Items — Expiry Risk Flag</div>
+              <table class="pbi-table">
+                <thead><tr><th>Product</th><th>Days to Expiry</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr><td>Herbal Eye Drops</td><td>18 days</td><td style="color:#f06292;">⚠ Critical</td></tr>
+                  <tr><td>Specialty Supp. X</td><td>34 days</td><td style="color:#f06292;">⚠ High Risk</td></tr>
+                  <tr><td>Homeo Tonic B</td><td>45 days</td><td style="color:#f5a623;">⚑ Monitor</td></tr>
+                  <tr><td>Enzyme Complex</td><td>58 days</td><td style="color:#f5a623;">⚑ Monitor</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="sec-divider"/>
+
+<!-- ═══════════════════════════════════════════════════
+     PROJECT 3
+════════════════════════════════════════════════════ -->
+<section class="proj-section" id="project-3">
+  <div class="proj-header-block reveal">
+    <div class="proj-big-num">03</div>
+    <div class="proj-header-text">
+      <div class="proj-type">Data Analysis · KPI Dashboard · Power BI</div>
+      <h2>Kaggle Supply Chain Dataset Analysis</h2>
+      <div class="proj-tool-row">
+        <span class="tool-pill">Kaggle Dataset</span>
+        <span class="tool-pill">Excel Data Cleaning</span>
+        <span class="tool-pill">Power BI</span>
+        <span class="tool-pill">KPI Framework</span>
+        <span class="tool-pill">Category Analysis</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="step-block s1 reveal">
+    <div class="step-num-label"><div class="step-circle">01</div><h3>Problem Statement</h3></div>
+    <div class="step-inner">
+      <h4>What is the problem?</h4>
+      <p>Supply chain managers in retail and consumer goods often lack a consolidated view of key performance indicators across product categories. Without a visual dashboard, critical patterns — seasonal stock-out spikes, lead time variance by category, and fulfilment dips — go undetected until they become revenue-impacting issues.</p>
+      <p>This project uses a real Kaggle supply chain dataset to practise end-to-end data analytics: cleaning raw data, calculating KPIs, and presenting findings in a professional Power BI dashboard that a supply chain manager could act on.</p>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step-block s2 reveal">
+    <div class="step-num-label"><div class="step-circle">02</div><h3>Objectives</h3></div>
+    <div class="step-inner">
+      <h4>What will this project answer?</h4>
+      <ul class="check-list">
+        <li>Clean and prepare a real-world supply chain dataset for analysis (10,000+ rows)</li>
+        <li>Calculate core KPIs: order fulfilment rate, average lead time, stock levels by category</li>
+        <li>Identify underperforming product categories and the root causes of performance dips</li>
+        <li>Determine which SKUs are causing the most stock-out-driven revenue loss</li>
+        <li>Build a multi-page Power BI dashboard with actionable insights for management</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step-block s3 reveal">
+    <div class="step-num-label"><div class="step-circle">03</div><h3>Methodology</h3></div>
+    <div class="step-inner">
+      <h4>How was this analysed?</h4>
+      <div class="two-col">
+        <div class="col-card">
+          <h5>Dataset Source</h5>
+          <p>Downloaded "Supply Chain Analysis" dataset from <strong>Kaggle.com</strong>. Dataset: 10,000+ rows, 24 columns covering product categories, order dates, quantities, lead times, stock levels, and fulfilment status.</p>
+        </div>
+        <div class="col-card">
+          <h5>Excel Data Cleaning</h5>
+          <p>Cleaned in Excel: removed 312 duplicate rows, standardised date formats across 3 columns, imputed missing values in 3% of records using category median. Created calculated columns for fulfilment status and lead time variance.</p>
+        </div>
+        <div class="col-card">
+          <h5>KPI Calculation</h5>
+          <p>Calculated: order fulfilment rate (fulfilled orders ÷ total orders), average lead time per category, stock coverage days, and stock-out frequency per SKU. Used pivot tables for category-level aggregation.</p>
+        </div>
+        <div class="col-card">
+          <h5>Power BI Dashboard</h5>
+          <p>Built a 3-page Power BI report: Page 1 — KPI summary cards; Page 2 — category breakdown with bar and line charts; Page 3 — quarterly trend analysis and top stock-out SKUs table.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4 — EXCEL + FINDINGS -->
+  <div class="step-block s4 reveal">
+    <div class="step-num-label"><div class="step-circle">04</div><h3>Key Findings</h3></div>
+    <div class="step-inner">
+      <h4>Excel Dataset — Cleaned Sample</h4>
+      <div class="excel-wrap">
+        <div class="excel-topbar">
+          <div class="excel-logo">📗 Microsoft Excel — SupplyChain_Cleaned.xlsx</div>
+          <div class="excel-tabs">
+            <div class="excel-tab active">Orders Data</div>
+            <div class="excel-tab">Category KPIs</div>
+            <div class="excel-tab">Stock-Out Log</div>
+          </div>
+        </div>
+        <div class="excel-body">
+          <div class="excel-header-row" style="grid-template-columns:2rem 1.2fr 1fr 0.9fr 1fr 0.9fr 0.8fr 0.8fr;">
+            <div class="excel-cell hdr"></div>
+            <div class="excel-cell hdr">Product Name</div>
+            <div class="excel-cell hdr">Category</div>
+            <div class="excel-cell hdr num">Order Qty</div>
+            <div class="excel-cell hdr num">Fulfilled Qty</div>
+            <div class="excel-cell hdr num">Lead Time (d)</div>
+            <div class="excel-cell hdr num">Stock Level</div>
+            <div class="excel-cell hdr">Status</div>
+          </div>
+          <div class="excel-row" style="grid-template-columns:2rem 1.2fr 1fr 0.9fr 1fr 0.9fr 0.8fr 0.8fr;">
+            <div class="excel-cell">1</div><div class="excel-cell">Foundation Cream SPF30</div><div class="excel-cell">Cosmetics</div><div class="excel-cell num">240</div><div class="excel-cell num">240</div><div class="excel-cell num">14</div><div class="excel-cell num">180</div><div class="excel-cell a-item">Fulfilled</div>
+          </div>
+          <div class="excel-row" style="grid-template-columns:2rem 1.2fr 1fr 0.9fr 1fr 0.9fr 0.8fr 0.8fr;">
+            <div class="excel-cell">2</div><div class="excel-cell">Moisturiser Serum A</div><div class="excel-cell">Skincare</div><div class="excel-cell num">180</div><div class="excel-cell num">157</div><div class="excel-cell num">18</div><div class="excel-cell num">12</div><div class="excel-cell b-item">Partial</div>
+          </div>
+          <div class="excel-row" style="grid-template-columns:2rem 1.2fr 1fr 0.9fr 1fr 0.9fr 0.8fr 0.8fr;">
+            <div class="excel-cell">3</div><div class="excel-cell">Argan Oil Shampoo</div><div class="excel-cell">Haircare</div><div class="excel-cell num">320</div><div class="excel-cell num">295</div><div class="excel-cell num">21</div><div class="excel-cell num">8</div><div class="excel-cell b-item">Partial</div>
+          </div>
+          <div class="excel-row" style="grid-template-columns:2rem 1.2fr 1fr 0.9fr 1fr 0.9fr 0.8fr 0.8fr;">
+            <div class="excel-cell">4</div><div class="excel-cell">Retinol Night Cream</div><div class="excel-cell">Skincare</div><div class="excel-cell num">150</div><div class="excel-cell num">0</div><div class="excel-cell num">18</div><div class="excel-cell num">0</div><div class="excel-cell c-item">Stock-Out</div>
+          </div>
+          <div class="excel-row" style="grid-template-columns:2rem 1.2fr 1fr 0.9fr 1fr 0.9fr 0.8fr 0.8fr;">
+            <div class="excel-cell">5</div><div class="excel-cell">Lip Gloss Set</div><div class="excel-cell">Cosmetics</div><div class="excel-cell num">400</div><div class="excel-cell num">400</div><div class="excel-cell num">12</div><div class="excel-cell num">210</div><div class="excel-cell a-item">Fulfilled</div>
+          </div>
+          <div class="excel-row total" style="grid-template-columns:2rem 1.2fr 1fr 0.9fr 1fr 0.9fr 0.8fr 0.8fr;">
+            <div class="excel-cell"></div><div class="excel-cell total"><strong>10,000+ rows total</strong></div><div class="excel-cell">All categories</div><div class="excel-cell num total">—</div><div class="excel-cell num total">94.3% avg.</div><div class="excel-cell num total">16.4d avg.</div><div class="excel-cell num total">—</div><div class="excel-cell">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-row" style="margin-top:1rem;">
+        <div class="stat-box"><div class="stat-val">94.3%</div><div class="stat-lab">Overall fulfilment rate</div></div>
+        <div class="stat-box"><div class="stat-val" style="color:#f5a623;">16.4d</div><div class="stat-lab">Average lead time</div></div>
+        <div class="stat-box"><div class="stat-val" style="color:#f06292;">3</div><div class="stat-lab">SKUs causing 40% of stockout losses</div></div>
+        <div class="stat-box"><div class="stat-val" style="color:#f5a623;">87%</div><div class="stat-lab">Skincare Q4 fulfilment (lowest)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="step-block s5 reveal">
+    <div class="step-num-label"><div class="step-circle">05</div><h3>Recommendations</h3></div>
+    <div class="step-inner">
+      <h4>Data-Driven Supply Chain Improvements</h4>
+      <ul class="check-list">
+        <li><strong>Prioritise safety stock buffers for the 3 high-impact SKUs</strong> — Retinol Night Cream, Argan Oil Shampoo, and Moisturiser Serum A — responsible for 40% of stock-out revenue loss.</li>
+        <li><strong>Renegotiate Haircare supplier lead times</strong> — reduce from 21.2 days average to target ≤15 days. Long lead times are the primary driver of partial fulfilment in this category.</li>
+        <li><strong>Set Skincare Q4 demand alerts</strong> based on prior year seasonality. Dashboard trend data shows consistent Q4 demand spike that current stock levels do not accommodate.</li>
+        <li><strong>Replicate Cosmetics' fulfilment model</strong> (96% rate, 12-day lead time) as internal best practice — review supplier relationships and order sizing in this category as the benchmark.</li>
+        <li><strong>Automate weekly dashboard refresh</strong> by connecting Power BI directly to the order management system, eliminating manual Excel data entry and enabling real-time monitoring.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STEP 6 — POWER BI MOCKUP P3 -->
+  <div class="step-block s6 reveal">
+    <div class="step-num-label"><div class="step-circle">06</div><h3>Deliverable</h3></div>
+    <div class="step-inner">
+      <h4>Power BI Dashboard — Supply Chain KPIs</h4>
+      <div class="del-row" style="margin-bottom:1rem;">
+        <span class="del-badge">Power BI dashboard (3 pages)</span>
+        <span class="del-badge">Cleaned Excel dataset</span>
+        <span class="del-badge">KPI framework document</span>
+        <span class="del-badge">Written findings report</span>
+      </div>
+      <div class="pbi-wrap">
+        <div class="pbi-topbar">
+          <div class="pbi-title-bar">📊 Supply Chain KPI Dashboard — Kaggle Dataset Analysis</div>
+          <div class="pbi-logo">⚡ Power BI</div>
+        </div>
+        <div class="pbi-body">
+          <div class="pbi-heading">Supply Chain Performance Overview</div>
+          <div class="pbi-sub">Dataset: Kaggle "Supply Chain Analysis" · 10,000+ records · 3 product categories</div>
+          <div class="pbi-kpi-row">
+            <div class="pbi-kpi"><div class="pbi-kpi-val" style="color:#6cc04a;">94.3%</div><div class="pbi-kpi-lab">Order Fulfilment Rate</div></div>
+            <div class="pbi-kpi"><div class="pbi-kpi-val" style="color:#f5a623;">16.4d</div><div class="pbi-kpi-lab">Avg. Lead Time</div></div>
+            <div class="pbi-kpi"><div class="pbi-kpi-val" style="color:#f06292;">3</div><div class="pbi-kpi-lab">Critical Stock-Outs</div></div>
+            <div class="pbi-kpi"><div class="pbi-kpi-val" style="color:#6cc04a;">96%</div><div class="pbi-kpi-lab">Cosmetics (best cat.)</div></div>
+          </div>
+          <div class="pbi-charts">
+            <div class="pbi-chart-card">
+              <div class="pbi-chart-title">Fulfilment Rate by Category</div>
+              <div class="bar-chart" style="height:90px;align-items:flex-end;">
+                <div class="bar-col"><div class="bar" style="height:86px;background:#6cc04a;"></div><div class="bar-lbl">Cosmetics 96%</div></div>
+                <div class="bar-col"><div class="bar" style="height:79px;background:#f5a623;"></div><div class="bar-lbl">Haircare 88%</div></div>
+                <div class="bar-col"><div class="bar" style="height:78px;background:#f06292;"></div><div class="bar-lbl">Skincare 87%</div></div>
+              </div>
+            </div>
+            <div class="pbi-chart-card">
+              <div class="pbi-chart-title">Avg. Lead Time by Category (days)</div>
+              <div class="bar-chart" style="height:90px;align-items:flex-end;">
+                <div class="bar-col"><div class="bar" style="height:57px;background:#6cc04a;"></div><div class="bar-lbl">Cosmetics 12d</div></div>
+                <div class="bar-col"><div class="bar" style="height:78px;background:#f06292;"></div><div class="bar-lbl">Haircare 21d</div></div>
+                <div class="bar-col"><div class="bar" style="height:69px;background:#f5a623;"></div><div class="bar-lbl">Skincare 18d</div></div>
+              </div>
+            </div>
+            <div class="pbi-chart-card">
+              <div class="pbi-chart-title">Quarterly Fulfilment Trend</div>
+              <svg class="spark" viewBox="0 0 200 60" preserveAspectRatio="none">
+                <polyline points="10,15 60,12 110,18 160,35 200,30" fill="none" stroke="#6cc04a" stroke-width="2" stroke-linejoin="round"/>
+                <polyline points="10,20 60,22 110,25 160,45 200,38" fill="none" stroke="#f5a623" stroke-width="1.5" stroke-linejoin="round" stroke-dasharray="4 2"/>
+                <text x="10" y="55" font-size="7" fill="#607080">Q1</text>
+                <text x="60" y="55" font-size="7" fill="#607080">Q2</text>
+                <text x="110" y="55" font-size="7" fill="#607080">Q3</text>
+                <text x="155" y="55" font-size="7" fill="#607080">Q4</text>
+              </svg>
+              <div style="display:flex;gap:0.8rem;margin-top:0.3rem;">
+                <div class="d-leg"><div class="d-dot" style="background:#6cc04a;"></div><span style="font-size:0.6rem;color:#607080;">Cosmetics</span></div>
+                <div class="d-leg"><div class="d-dot" style="background:#f5a623;"></div><span style="font-size:0.6rem;color:#607080;">Skincare</span></div>
+              </div>
+            </div>
+            <div class="pbi-chart-card">
+              <div class="pbi-chart-title">Top Stock-Out SKUs by Revenue Loss</div>
+              <table class="pbi-table">
+                <thead><tr><th>Product</th><th>Category</th><th>Lost Rev.</th></tr></thead>
+                <tbody>
+                  <tr><td>Retinol Night Cream</td><td>Skincare</td><td style="color:#f06292;">LKR 84K</td></tr>
+                  <tr><td>Argan Oil Shampoo</td><td>Haircare</td><td style="color:#f06292;">LKR 72K</td></tr>
+                  <tr><td>Moisturiser Serum A</td><td>Skincare</td><td style="color:#f5a623;">LKR 54K</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="sec-divider"/>
+
+<!-- ═══════════════════════════════════════════════════
+     PROJECT 4
+════════════════════════════════════════════════════ -->
+<section class="proj-section" id="project-4">
+  <div class="proj-header-block reveal">
+    <div class="proj-big-num">04</div>
+    <div class="proj-header-text">
+      <div class="proj-type">Research · Export Chain · Risk Analysis</div>
+      <h2>Sri Lanka Tea Export Supply Chain</h2>
+      <div class="proj-tool-row">
+        <span class="tool-pill">Secondary Research</span>
+        <span class="tool-pill">Chain Flow Mapping</span>
+        <span class="tool-pill">Risk Matrix</span>
+        <span class="tool-pill">Sri Lanka Tea Board Data</span>
+        <span class="tool-pill">Ceylon Chamber Reports</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="step-block s1 reveal">
+    <div class="step-num-label"><div class="step-circle">01</div><h3>Problem Statement</h3></div>
+    <div class="step-inner">
+      <h4>What is the problem?</h4>
+      <p>Sri Lanka's tea export supply chain is one of the most strategically important in the country, contributing significantly to national foreign exchange earnings. Yet it is a multi-tiered chain with complex dependencies — from smallholder farmers at high elevation to international buyers in Europe, Russia, and the Middle East — each stage introducing its own risks and inefficiencies.</p>
+      <p>The chain is acutely vulnerable to weather variability, auction price fluctuations, and port logistics delays. The near-total dependence on the Colombo auction as a single selling channel creates concentration risk. This project maps the full chain and conducts a structured risk analysis to identify where the greatest vulnerabilities lie and what mitigations are available.</p>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step-block s2 reveal">
+    <div class="step-num-label"><div class="step-circle">02</div><h3>Objectives</h3></div>
+    <div class="step-inner">
+      <h4>What will this project answer?</h4>
+      <ul class="check-list">
+        <li>Map the complete Sri Lanka tea export chain from farmer to international buyer across all stages</li>
+        <li>Understand the role and risk of the Colombo Tea Auction as the dominant selling channel</li>
+        <li>Identify and rate the top supply chain risks using a structured risk matrix (likelihood × impact)</li>
+        <li>Propose practical mitigation strategies for each identified risk factor</li>
+        <li>Produce a 2–3 page research report with annotated flow diagram and risk matrix</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step-block s3 reveal">
+    <div class="step-num-label"><div class="step-circle">03</div><h3>Methodology</h3></div>
+    <div class="step-inner">
+      <h4>How was this analysed?</h4>
+      <div class="two-col">
+        <div class="col-card">
+          <h5>Secondary Research Sources</h5>
+          <p>Sri Lanka Tea Board annual reports, Ceylon Chamber of Commerce export data, Sri Lanka Export Development Board industry profiles, and published academic papers on tea supply chain risk.</p>
+        </div>
+        <div class="col-card">
+          <h5>Chain Flow Mapping</h5>
+          <p>Constructed a 6-stage annotated flow diagram covering each actor in the chain: smallholder farmer, leaf collector/bought-leaf factory, TSHD factory, Colombo auction, licensed exporter, and international buyer.</p>
+        </div>
+        <div class="col-card">
+          <h5>Risk Matrix Construction</h5>
+          <p>Identified 5 primary risk factors from literature and industry data. Rated each on a 1–5 scale for likelihood and impact. Calculated risk score (L × I) and classified as Low / Medium / High.</p>
+        </div>
+        <div class="col-card">
+          <h5>Mitigation Framework</h5>
+          <p>For each High and Medium risk factor, proposed at least one practical mitigation strategy with reference to industry best practice — including forward contracts, crop insurance, and port logistics reform.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step-block s4 reveal">
+    <div class="step-num-label"><div class="step-circle">04</div><h3>Key Findings</h3></div>
+    <div class="step-inner">
+      <h4>Full Tea Export Supply Chain — Sri Lanka</h4>
+      <div class="flow-chain">
+        <div class="flow-node">🌿 Smallholder Farmer</div><div class="flow-arrow">→</div>
+        <div class="flow-node">🧺 Leaf Collector</div><div class="flow-arrow">→</div>
+        <div class="flow-node">🏭 TSHD Factory</div><div class="flow-arrow">→</div>
+        <div class="flow-node">🏛 Colombo Auction</div><div class="flow-arrow">→</div>
+        <div class="flow-node">📦 Licensed Exporter</div><div class="flow-arrow">→</div>
+        <div class="flow-node">✈️ International Buyer</div>
+      </div>
+
+      <div class="tbl-wrap" style="margin-top:1.2rem;">
+        <table>
+          <thead>
+            <tr><th>Stage</th><th>Key Actor</th><th>Typical Duration</th><th>Key Fact</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Farm</td><td>~340,000 smallholder farmers</td><td>Continuous</td><td>72% of total leaf supply from smallholders</td></tr>
+            <tr><td>Collection</td><td>Green leaf contractors / bought-leaf centres</td><td>Same day</td><td>Leaf must reach factory within 6–8 hours of plucking</td></tr>
+            <tr><td>Factory</td><td>~600 registered Tea Small Holder Development Factories</td><td>24–48 hrs</td><td>Withering, rolling, fermentation, drying, grading</td></tr>
+            <tr><td>Auction</td><td>Colombo Tea Auction (CMTA)</td><td>Weekly</td><td>~70% of Ceylon tea sold via auction — held every Tuesday</td></tr>
+            <tr><td>Export</td><td>~250 licensed tea exporters</td><td>7–14 days</td><td>Packaging, blending, documentation, booking containers</td></tr>
+            <tr><td>Buyer</td><td>EU, Russia, Middle East, Iran (top markets)</td><td>Shipping 14–21 days</td><td>Farm-to-port avg: <strong>18–22 days</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top:1.5rem;">
+        <p style="font-size:0.75rem;color:var(--muted);margin-bottom:0.8rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;">Risk Matrix — Likelihood × Impact</p>
+        <div class="risk-matrix" style="grid-template-columns:auto repeat(4,1fr);">
+          <div class="rm-head">Risk Factor</div>
+          <div class="rm-head">Likelihood (1–5)</div>
+          <div class="rm-head">Impact (1–5)</div>
+          <div class="rm-head">Risk Score</div>
+          <div class="rm-head">Rating</div>
+
+          <div class="rm-label">Weather / Drought</div>
+          <div class="rm-cell rm-high">4</div>
+          <div class="rm-cell rm-high">5</div>
+          <div class="rm-cell rm-high">20 / 25</div>
+          <div class="rm-cell rm-high"><span class="rm-dot" style="background:#f06292;"></span>High</div>
+
+          <div class="rm-label">Auction Price Volatility</div>
+          <div class="rm-cell rm-high">5</div>
+          <div class="rm-cell rm-high">4</div>
+          <div class="rm-cell rm-high">20 / 25</div>
+          <div class="rm-cell rm-high"><span class="rm-dot" style="background:#f06292;"></span>High</div>
+
+          <div class="rm-label">Port Congestion (Colombo)</div>
+          <div class="rm-cell rm-med">3</div>
+          <div class="rm-cell rm-med">4</div>
+          <div class="rm-cell rm-med">12 / 25</div>
+          <div class="rm-cell rm-med"><span class="rm-dot" style="background:#f5a623;"></span>Medium</div>
+
+          <div class="rm-label">Single Auction Channel</div>
+          <div class="rm-cell rm-low">2</div>
+          <div class="rm-cell rm-high">5</div>
+          <div class="rm-cell rm-med">10 / 25</div>
+          <div class="rm-cell rm-med"><span class="rm-dot" style="background:#f5a623;"></span>Medium</div>
+
+          <div class="rm-label">Labour / Plucking Shortage</div>
+          <div class="rm-cell rm-med">3</div>
+          <div class="rm-cell rm-med">3</div>
+          <div class="rm-cell rm-low">9 / 25</div>
+          <div class="rm-cell rm-low"><span class="rm-dot" style="background:var(--green);"></span>Low</div>
+        </div>
+      </div>
+
+      <div class="stat-row" style="margin-top:1rem;">
+        <div class="stat-box"><div class="stat-val">70%</div><div class="stat-lab">Tea sold via single Colombo Auction channel</div></div>
+        <div class="stat-box"><div class="stat-val" style="color:#f06292;">±40%</div><div class="stat-lab">Auction price year-on-year fluctuation</div></div>
+        <div class="stat-box"><div class="stat-val" style="color:#f5a623;">22d</div><div class="stat-lab">Max farm-to-port lead time</div></div>
+        <div class="stat-box"><div class="stat-val" style="color:#f06292;">30%</div><div class="stat-lab">Max annual yield loss from weather events</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="step-block s5 reveal">
+    <div class="step-num-label"><div class="step-circle">05</div><h3>Recommendations</h3></div>
+    <div class="step-inner">
+      <h4>Risk Mitigation Strategies</h4>
+      <ul class="check-list">
+        <li><strong>Diversify beyond the Colombo Auction</strong> — develop direct-trade agreements with large international buyers (supermarket chains, blending companies in EU and Middle East) to reduce the 70% auction dependency. Even shifting 20% to direct trade reduces single-channel concentration risk significantly.</li>
+        <li><strong>Establish weather-linked crop insurance for smallholder farmers</strong> — subsidised through the Tea Board. Reduces financial devastation from drought years and incentivises continued investment in cultivation and plucking quality.</li>
+        <li><strong>Build exporter buffer inventory</strong> — licensed exporters should maintain 2–3 weeks of stock at Colombo warehouses to absorb port congestion delays without disrupting buyer delivery schedules.</li>
+        <li><strong>Negotiate long-term forward contracts with key international buyers</strong> — fix a portion of export volume at pre-agreed prices per quarter. Reduces year-on-year price volatility exposure for factories and exporters.</li>
+        <li><strong>Advocate for Colombo Port priority lane for agricultural exports</strong> — coordinate with the Sri Lanka Ports Authority to create a dedicated fast-processing channel for perishable export commodities including tea, reducing port dwell time from 3–7 days toward a 24–48 hour target.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- STEP 6 -->
+  <div class="step-block s6 reveal">
+    <div class="step-num-label"><div class="step-circle">06</div><h3>Deliverable</h3></div>
+    <div class="step-inner">
+      <h4>Output of this Project</h4>
+      <div class="del-row">
+        <span class="del-badge">2–3 page research report</span>
+        <span class="del-badge">6-stage annotated flow diagram</span>
+        <span class="del-badge">Risk matrix (5 factors, L×I scoring)</span>
+        <span class="del-badge">Mitigation strategy framework</span>
+      </div>
+      <p style="margin-top:1rem;">Research report includes: an annotated supply chain flow diagram tracing the full journey from Sri Lankan smallholder farmer to international buyer, a 5-factor risk matrix with likelihood and impact ratings, and strategic mitigation recommendations targeting the two highest-rated risks — weather volatility and auction price fluctuation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Supply Chain Management Portfolio · Dewmini Tharindi · SLTC Research University · <a href="mailto:dewminitharindi999@gmail.com">dewminitharindi999@gmail.com</a></p>
+  <p style="color:var(--muted);">© 2025</p>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 70);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.07 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
